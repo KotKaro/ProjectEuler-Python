@@ -21,10 +21,4 @@ def get_factorial(number: int):
 
 
 def get_digits_sum_for_factorial(number: int):
-    factorial_string = str(get_factorial(number))
-
-    digits_sum = 0
-    for char in factorial_string:
-        digits_sum += int(char)
-
-    return digits_sum
+    return sum([int(char) for char in str(get_factorial(number))])
