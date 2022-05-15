@@ -1,8 +1,6 @@
 from typing import List
 
-
-def get_sum_of_dividers(number: int):
-    return sum([divider for divider in range(1, int(number / 2) + 1) if number % divider == 0])
+from problems.utils import get_sum_of_dividers
 
 
 def get_amicable_numbers_in_range(start: int, stop: int) -> List[int]:

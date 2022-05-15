@@ -1,9 +1,5 @@
 import unittest
-from datetime import datetime
 
-from problems.Problem19.problem import is_leap_year, get_all_sundays_between_days, get_first_sunday_date_from, \
-    get_all_sundays_between_days_which_are_first_day_of_month
-from problems.Problem20.problem import get_factorial, get_digits_sum_for_factorial
 from problems.Problem21.problem import get_amicable_numbers_in_range, get_sum_of_amicable_numbers_in_range
 
 
