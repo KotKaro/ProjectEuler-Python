@@ -19,10 +19,6 @@ def count_of_dominating_numbers_in_power(power: int):
     total_not_zero = 0
     total_zero = 0
 
-    to_calculate = [[index, zeros_count] for index in range(minimal_count_of_same_numbers, total_digits_count + 1) for
-                    zeros_count in
-                    range(1, minimal_count_of_same_numbers)]
-
     for index in range(minimal_count_of_same_numbers, total_digits_count + 1):
         total_not_zero_remaining = total_digits_count - index
         to_multiply = 1 if total_not_zero_remaining == 0 else 8 ** total_not_zero_remaining
@@ -52,11 +48,11 @@ def count_of_dominating_numbers_in_power(power: int):
 def count_of_dominating_numbers_to_power(power: int):
     all_powers = []
     powers = list(reversed(range(1, power + 1)))
-
     for power in powers:
+        start_time = time.time()
         print("Calculating for: {0}".format(power))
         all_powers.append(count_of_dominating_numbers_in_power(power))
-
+        print("--- %s seconds ---" % (time.time() - start_time))
     return sum(all_powers)
 
 
