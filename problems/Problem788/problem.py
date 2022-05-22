@@ -19,6 +19,10 @@ def count_of_dominating_numbers_in_power(power: int):
     total_not_zero = 0
     total_zero = 0
 
+    to_calculate = [[index, zeros_count] for index in range(minimal_count_of_same_numbers, total_digits_count + 1) for
+                    zeros_count in
+                    range(1, minimal_count_of_same_numbers)]
+
     for index in range(minimal_count_of_same_numbers, total_digits_count + 1):
         total_not_zero_remaining = total_digits_count - index
         to_multiply = 1 if total_not_zero_remaining == 0 else 8 ** total_not_zero_remaining
@@ -31,15 +35,14 @@ def count_of_dominating_numbers_in_power(power: int):
         to_multiply = 1 if zero_remaining_number <= 0 else 9 ** zero_remaining_number
         total_zero += 9 * get_placement_combinations(total_digits_count - 1, index) * to_multiply
 
-    for count_of_zeros in range(1, minimal_count_of_same_numbers):
-        for minimal_count_of_same in range(minimal_count_of_same_numbers, total_digits_count):
-            if count_of_zeros + minimal_count_of_same > total_digits_count:
+        for zeros_count in range(1, minimal_count_of_same_numbers):
+            if zeros_count + index > total_digits_count:
                 continue
 
-            zeros_placements = get_placement_combinations(total_digits_count - 1, count_of_zeros)
-            non_zeros_placements = get_placement_combinations(total_digits_count - count_of_zeros,
-                                                              minimal_count_of_same)
-            other_numbers = total_digits_count - (minimal_count_of_same + count_of_zeros)
+            zeros_placements = get_placement_combinations(total_digits_count - 1, zeros_count)
+            non_zeros_placements = get_placement_combinations(total_digits_count - zeros_count,
+                                                              index)
+            other_numbers = total_digits_count - (index + zeros_count)
             to_multiply = 1 if other_numbers <= 0 else 8 ** other_numbers
             total += 9 * non_zeros_placements * zeros_placements * to_multiply
 
