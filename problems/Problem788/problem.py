@@ -20,6 +20,7 @@ def count_of_dominating_numbers_in_power(power: int):
     total_zero = 0
 
     for index in range(minimal_count_of_same_numbers, total_digits_count + 1):
+        # 1 - 9
         total_not_zero_remaining = total_digits_count - index
         to_multiply = 1 if total_not_zero_remaining == 0 else 8 ** total_not_zero_remaining
         total_not_zero += 9 * get_placement_combinations(total_digits_count, index) * to_multiply
@@ -27,10 +28,12 @@ def count_of_dominating_numbers_in_power(power: int):
         if total_digits_count - 1 < index:
             continue
 
+        # count of zeros >= minimal_count_of_same_numbers
         zero_remaining_number = total_digits_count - index - 1
         to_multiply = 1 if zero_remaining_number <= 0 else 9 ** zero_remaining_number
         total_zero += 9 * get_placement_combinations(total_digits_count - 1, index) * to_multiply
 
+        # count of zeros < minimal_count_of_same_numbers
         for zeros_count in range(1, minimal_count_of_same_numbers):
             if zeros_count + index > total_digits_count:
                 continue
